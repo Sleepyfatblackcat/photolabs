@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.scss';
 import PhotoList from 'components/PhotoList';
-import TopicList from "./components/TopicList";
+import TopNavigationBar from 'components/TopNavigationBar';
 
 // const addPhotosToList = (photos) => {
 //   const list = new Array(3);
@@ -24,7 +24,7 @@ import TopicList from "./components/TopicList";
 const App = () => {
   return (
     <div className="App">
-      <TopicList/>
+      <TopNavigationBar/>
       <PhotoList/>
     </div>
   );
