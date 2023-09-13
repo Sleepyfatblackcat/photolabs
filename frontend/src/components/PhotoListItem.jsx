@@ -3,11 +3,11 @@ import React, {useState} from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({item, setModal, favorite, handleFavorite}) => {
+const PhotoListItem = ({item, state, updateToFavPhotoIds, setPhotoSelected}) => {
   return (
     <div className="photo-list__item">
-      <PhotoFavButton selected={favorite.includes(item.id)} onClick={() => handleFavorite(item)}/>
-      <img src={item.urls.regular} alt="photo" className="photo-list__image" onClick={()=>setModal({visible: true, photo: item})}/>
+      <PhotoFavButton selected={state.favorite.includes(item.id)} onClick={() => updateToFavPhotoIds(item)}/>
+      <img src={item.urls.regular} alt="photo" className="photo-list__image" onClick={()=>setPhotoSelected(item)}/>
       <div className="photo-list__user-details">
         <img src={item.user.profile} alt="profile picture" className="photo-list__user-profile"/>
         <div className="photo-list__user-info">

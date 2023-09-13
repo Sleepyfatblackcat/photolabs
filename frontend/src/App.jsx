@@ -6,39 +6,27 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 
-// const addPhotosToList = (photos) => {
-//   const list = new Array(3);
-//   for (let x = 0; x < photos; x++) {
-//     list.push (
-//       <PhotoListItem key={sampleDataForPhotoListItem.id}
-//                      image={sampleDataForPhotoListItem.imageSource}
-//                      profile={sampleDataForPhotoListItem.profile}
-//                      username={sampleDataForPhotoListItem.username}
-//                      city={sampleDataForPhotoListItem.location.city}
-//                      country={sampleDataForPhotoListItem.location.country}
-//       />
-//     );
-//   }
-//   return list;
-// }
+import useApplicationData from './hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [favorite, setFavorite] = useState([]);
-  const [modal, setModal] = useState({visible: false, photo: {}});
-  
-  const handleFavorite = (item) => {
-    if (favorite.includes(item.id)) {
-      setFavorite(prev => [...favorite].filter(x => x !== item.id));
-    } else {
-      setFavorite(prev => [...favorite, item.id]);
-    }
-  }
-
+  const {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal} = useApplicationData();
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} favorite={favorite} setModal={setModal} handleFavorite={handleFavorite}/>
-      {modal.visible && <PhotoDetailsModal modal={modal} setModal={setModal} favorite={favorite} handleFavorite={handleFavorite}/>}
+      <HomeRoute 
+        photos={photos}
+        topics={topics}
+        state={state}
+        updateToFavPhotoIds={updateToFavPhotoIds}
+        setPhotoSelected={setPhotoSelected}
+      />
+      {state.modal.visible && <PhotoDetailsModal 
+                          state={state}
+                          updateToFavPhotoIds={updateToFavPhotoIds}
+                          setPhotoSelected={setPhotoSelected}
+                          onClosePhotoDetailsModal={onClosePhotoDetailsModal}
+                        />
+      }
     </div>
   );
 };
