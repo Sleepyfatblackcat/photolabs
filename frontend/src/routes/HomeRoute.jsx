@@ -11,6 +11,7 @@ const HomeRoute = ({photos, topics, favorite, setModal, handleFavorite}) => {
       <PhotoList 
         photos={photos}
         setModal={setModal}
+        favorite={favorite}
         handleFavorite={handleFavorite}
       />
     </div>

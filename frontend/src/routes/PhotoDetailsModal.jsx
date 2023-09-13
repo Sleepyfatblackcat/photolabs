@@ -5,7 +5,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from 'components/PhotoFavButton';
 import PhotoList from 'components/PhotoList';
 
-const PhotoDetailsModal = ({modal, setModal, handleFavorite}) => {
+const PhotoDetailsModal = ({modal, setModal, favorite, handleFavorite}) => {
   const photos = Object.keys(modal.photo.similar_photos).map((key) => modal.photo.similar_photos[key]);
   return (
     <div className="photo-details-modal">
@@ -13,7 +13,7 @@ const PhotoDetailsModal = ({modal, setModal, handleFavorite}) => {
         <img src={closeSymbol} alt="close symbol" onClick={() => setModal({visible: false})}/>
       </button>
       <div className="photo-details-modal__images">
-        <PhotoFavButton selected={select} onClick={()=>handleFavorite(modal.photo)}/>
+        <PhotoFavButton selected={favorite.includes(modal.photo.id)} onClick={() => handleFavorite(modal.photo)}/>
         <img src={modal.photo.urls.full} alt="photo" className="photo-details-modal__image"/>
         <div className="photo-list__user-details">
           <img src={modal.photo.user.profile} alt="profile picture" className="photo-list__user-profile"/>
@@ -28,9 +28,9 @@ const PhotoDetailsModal = ({modal, setModal, handleFavorite}) => {
         </div>
         <PhotoList
           photos={photos}
+          setModal={setModal}
           favorite={favorite}
-          setFavorite={setFavorite}
-          setModal={setModal} 
+          handleFavorite={handleFavorite}
         />
       </div>
     </div>

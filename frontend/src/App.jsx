@@ -38,7 +38,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute photos={photos} topics={topics} favorite={favorite} setModal={setModal} handleFavorite={handleFavorite}/>
-      {modal.visible && <PhotoDetailsModal modal={modal} setModal={setModal} handleFavorite={handleFavorite}/>}
+      {modal.visible && <PhotoDetailsModal modal={modal} setModal={setModal} favorite={favorite} handleFavorite={handleFavorite}/>}
     </div>
   );
 };
