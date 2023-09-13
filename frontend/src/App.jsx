@@ -26,10 +26,19 @@ import topics from './mocks/topics';
 const App = () => {
   const [favorite, setFavorite] = useState([]);
   const [modal, setModal] = useState({visible: false, photo: {}});
+  
+  const handleFavorite = (item) => {
+    if (favorite.includes(item.id)) {
+      setFavorite(prev => [...favorite].filter(x => x !== item.id));
+    } else {
+      setFavorite(prev => [...favorite, item.id]);
+    }
+  }
+
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} favorite={favorite} setFavorite={setFavorite} setModal={setModal}/>
-      {modal.visible && <PhotoDetailsModal modal={modal} setModal={setModal} favorite={favorite} setFavorite={setFavorite}/>}
+      <HomeRoute photos={photos} topics={topics} favorite={favorite} setModal={setModal} handleFavorite={handleFavorite}/>
+      {modal.visible && <PhotoDetailsModal modal={modal} setModal={setModal} handleFavorite={handleFavorite}/>}
     </div>
   );
 };
