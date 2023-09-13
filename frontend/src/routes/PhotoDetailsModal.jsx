@@ -26,12 +26,14 @@ const PhotoDetailsModal = ({modal, setModal, favorite, handleFavorite}) => {
         <div className="photo-details-modal__header">
           <span>Similar Photos</span>
         </div>
-        <PhotoList
-          photos={photos}
-          setModal={setModal}
-          favorite={favorite}
-          handleFavorite={handleFavorite}
-        />
+        <div className="photo-details-photo__list">
+          <PhotoList
+            photos={photos}
+            setModal={setModal}
+            favorite={favorite}
+            handleFavorite={handleFavorite}
+          />
+        </div>
       </div>
     </div>
   )
