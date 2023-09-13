@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({image, profile, username, city, country, setFavorite, setModal}) => {
+const PhotoListItem = ({item, setFavorite, setModal}) => {
   const [select, setSelect] = useState(false);
 
   const handleFavorite = () => {
@@ -14,13 +14,13 @@ const PhotoListItem = ({image, profile, username, city, country, setFavorite, se
   return (
     <div className="photo-list__item">
       <PhotoFavButton selected={select} onClick={()=>handleFavorite()}/>
-      <img src={image} alt="photo" className="photo-list__image" onClick={()=>setModal(true)}/>
+      <img src={item.urls.regular} alt="photo" className="photo-list__image" onClick={()=>setModal({visible: true, photo: item})}/>
       <div className="photo-list__user-details">
-        <img src={profile} alt="profile picture" className="photo-list__user-profile"/>
+        <img src={item.user.profile} alt="profile picture" className="photo-list__user-profile"/>
         <div className="photo-list__user-info">
-          <span>{username}</span>
+          <span>{item.user.username}</span>
           <br></br>
-          <span className="photo-list__user-location">{city}, {country}</span>
+          <span className="photo-list__user-location">{item.location.city}, {item.location.country}</span>
         </div>
       </div>
     </div>

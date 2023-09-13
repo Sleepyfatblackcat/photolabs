@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import './App.scss';
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import photos from './mocks/photos';
+import topics from './mocks/topics';
 
 // const addPhotosToList = (photos) => {
 //   const list = new Array(3);
@@ -22,11 +24,12 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [modal, setModal] = useState(false);
+  const [favorite, setFavorite] = useState([]);
+  const [modal, setModal] = useState({visible: false, photo: {}});
   return (
     <div className="App">
-      <HomeRoute setModal={setModal}/>
-      {modal && <PhotoDetailsModal setModal={setModal}/>}
+      <HomeRoute photos={photos} topics={topics} favorite={favorite} setFavorite={setFavorite} setModal={setModal}/>
+      {modal.visible && <PhotoDetailsModal modal={modal} setModal={setModal} favorite={favorite} setFavorite={setFavorite}/>}
     </div>
   );
 };

@@ -9,11 +9,7 @@ const PhotoList = ({photos, favorite, setFavorite, setModal}) => {
       {photos.map((item) => (
         <div key={item.id}>
           <PhotoListItem
-            image={item.urls.regular}
-            profile={item.user.profile}
-            username={item.user.username}
-            city={item.location.city}
-            country={item.location.country}
+            item={item}
             setFavorite={() => setFavorite(prev => [...favorite, item.id])}
             setModal={setModal}
           />
