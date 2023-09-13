@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.scss';
 import HomeRoute from "./routes/HomeRoute";
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 // const addPhotosToList = (photos) => {
 //   const list = new Array(3);
@@ -21,9 +22,11 @@ import HomeRoute from "./routes/HomeRoute";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [modal, setModal] = useState(false);
   return (
     <div className="App">
-      <HomeRoute/>
+      <HomeRoute setModal={setModal}/>
+      {modal && <PhotoDetailsModal setModal={setModal}/>}
     </div>
   );
 };
