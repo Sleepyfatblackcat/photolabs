@@ -23,9 +23,9 @@ const PhotoDetailsModal = ({state, updateToFavPhotoIds, setPhotoSelected, onClos
             <span className="photo-list__user-location">{state.modal.photo.location.city}, {state.modal.photo.location.country}</span>
           </div>
         </div>
-        <div className="photo-details-modal__header">
+        {photos.length !== 0 && <div className="photo-details-modal__header">
           <span>Similar Photos</span>
-        </div>
+        </div>}
         <div className="photo-details-photo__list">
           <PhotoList
             photos={photos}

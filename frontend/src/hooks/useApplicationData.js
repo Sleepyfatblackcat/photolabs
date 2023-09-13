@@ -1,37 +1,63 @@
-import {useState} from "react";
+import {useReducer} from "react";
+
+const ACTIONS = {
+  FAV_PHOTO: 'FAV_PHOTO',
+  SELECT_PHOTO: 'SELECT_PHOTO',
+  CLOSE_MODAL: 'CLOSE_MODAL'
+}
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
+  function reducer(state, action) {
+    switch (action.type) {
+      case ACTIONS.FAV_PHOTO:
+        if (state.favorite.includes(action.id)) {
+          return {
+            ...state,
+            favorite: state.favorite.filter(x => x != action.id)
+          }
+        } else {
+          return{
+            ...state,
+            favorite: [...state.favorite, action.id]
+          }
+        }
+      
+      case ACTIONS.SELECT_PHOTO:
+        return {
+          ...state,
+          modal: {visible: true, photo: action.item}
+        }
+
+      case ACTIONS.CLOSE_MODAL:
+        return {
+          ...state,
+          modal: {visible: false, photo: null}
+        }
+
+      default:
+        throw new Error(
+          `Tried to reduce with unsupported action type: ${action.type}`
+        );
+      }
+  }
+
+  const defaultState = {
     favorite: [],
     modal: {visible: false, photo: {}}
-  });
-  
+  };
+
+  const [state, dispatch] = useReducer(reducer, defaultState);
+
   const updateToFavPhotoIds = (item) => {
-    if (state.favorite.includes(item.id)) {
-      setState(prev => ({
-        ...prev,
-        favorite: prev.favorite.filter(x => x != item.id)
-      }));
-    } else {
-      setState(prev => ({
-        ...prev,
-        favorite: [...prev.favorite, item.id]
-      }));
-    }
+    dispatch({type: ACTIONS.FAV_PHOTO, id: item.id});
   }
 
   const setPhotoSelected = (item) => {
-    setState(prev => ({
-      ...prev,
-      modal: {visible: true, photo: item}
-    }));
+    dispatch({type: ACTIONS.SELECT_PHOTO, item: item});
   }
 
   const onClosePhotoDetailsModal = () => {
-    setState(prev => ({
-      ...prev,
-      modal: {visible: false, photo: null}
-    }));
+    dispatch({type: ACTIONS.CLOSE_MODAL});
   }
 
   return {
