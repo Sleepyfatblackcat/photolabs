@@ -7,7 +7,7 @@ const TopicListItem = ({slug, title, getPhotosByTopic}) => {
     <div className="topic-list__item" data-slug={slug}>
       <span onClick={getPhotosByTopic}>{title}</span>
     </div>
-  );
+  );y
 };
 
 export default TopicListItem;

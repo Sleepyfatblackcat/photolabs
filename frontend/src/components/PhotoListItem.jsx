@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
+import {AppContext} from '../App';
 
-const PhotoListItem = ({item, state, updateToFavPhotoIds, setPhotoSelected}) => {
+const PhotoListItem = ({item}) => {
+  const {state, updateToFavPhotoIds, setPhotoSelected} = useContext(AppContext);
   return (
     <div className="photo-list__item">
       <PhotoFavButton selected={state.favorite.includes(item.id)} onClick={() => updateToFavPhotoIds(item)}/>

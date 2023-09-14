@@ -1,18 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 
 import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
 import TopNavigationBar from 'components/TopNavigationBar';
+import {AppContext} from '../App';
 
-const HomeRoute = ({photos, topics, state, updateToFavPhotoIds, setPhotoSelected, getPhotosByTopic}) => {
+const HomeRoute = () => {
+  const {state} = useContext(AppContext);
   return (
     <div className="home-route">
-      <TopNavigationBar state={state} getPhotosByTopic={getPhotosByTopic}/>
-      <PhotoList
-        state={state}
-        updateToFavPhotoIds={updateToFavPhotoIds}
-        setPhotoSelected={setPhotoSelected}
-      />
+      <TopNavigationBar state={state}/>
+      <PhotoList state={state}/>
     </div>
   );
 };

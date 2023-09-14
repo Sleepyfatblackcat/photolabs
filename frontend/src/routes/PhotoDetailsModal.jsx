@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from 'components/PhotoFavButton';
 import PhotoList from 'components/PhotoList';
+import {AppContext} from '../App';
 
-const PhotoDetailsModal = ({state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal}) => {
+const PhotoDetailsModal = () => {
+  const {state, updateToFavPhotoIds, onClosePhotoDetailsModal} = useContext(AppContext);
+
   const photos = {};
   photos.photoData = Object.keys(state.modal.photo.similar_photos).map((key) => state.modal.photo.similar_photos[key]);
   photos.favorite = state.favorite;
+
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button">
@@ -29,11 +33,7 @@ const PhotoDetailsModal = ({state, updateToFavPhotoIds, setPhotoSelected, onClos
           <span>Similar Photos</span>
         </div>}
         <div className="photo-details-photo__list">
-          <PhotoList
-            state={photos}
-            updateToFavPhotoIds={updateToFavPhotoIds}
-            setPhotoSelected={setPhotoSelected}
-          />
+          <PhotoList state={photos}/>
         </div>
       </div>
     </div>

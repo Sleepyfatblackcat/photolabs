@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
+import { AppContext } from '../App';
 
-const TopicList = ({topics, getPhotosByTopic}) => {
+const TopicList = ({topics}) => {
+  const {getPhotosByTopic} = useContext(AppContext);
   return (
     <div className="top-nav-bar__topic-list">
       {topics.map((item) => (
