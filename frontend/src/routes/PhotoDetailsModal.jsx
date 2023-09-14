@@ -6,7 +6,9 @@ import PhotoFavButton from 'components/PhotoFavButton';
 import PhotoList from 'components/PhotoList';
 
 const PhotoDetailsModal = ({state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal}) => {
-  const photos = Object.keys(state.modal.photo.similar_photos).map((key) => state.modal.photo.similar_photos[key]);
+  const photos = {};
+  photos.photoData = Object.keys(state.modal.photo.similar_photos).map((key) => state.modal.photo.similar_photos[key]);
+  photos.favorite = state.favorite;
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button">
@@ -28,8 +30,7 @@ const PhotoDetailsModal = ({state, updateToFavPhotoIds, setPhotoSelected, onClos
         </div>}
         <div className="photo-details-photo__list">
           <PhotoList
-            photos={photos}
-            state={state}
+            state={photos}
             updateToFavPhotoIds={updateToFavPhotoIds}
             setPhotoSelected={setPhotoSelected}
           />
