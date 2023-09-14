@@ -4,11 +4,11 @@ import '../styles/TopNavigationBar.scss'
 import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 
-const TopNavigation = ({topics, state}) => {
+const TopNavigation = ({state, getPhotosByTopic}) => {
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
-      <TopicList topics={topics}/>
+      <TopicList topics={state.topicData} getPhotosByTopic={getPhotosByTopic}/>
       <FavBadge isFavPhotoExist={state.favorite.length > 0}/>
     </div>
   )

@@ -3,10 +3,10 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({photos, state, updateToFavPhotoIds, setPhotoSelected}) => {
+const PhotoList = ({state, updateToFavPhotoIds, setPhotoSelected}) => {
   return (
     <ul className="photo-list">
-      {photos.map((item) => (
+      {state.photoData.map((item) => (
         <div key={item.id}>
           <PhotoListItem
             item={item}
