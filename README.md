@@ -5,9 +5,9 @@ The PhotoLabs project for the Web Development React course programming.
 
 ## Final Product
 
-!["Screenshot of front page"](https://github.com/Sleepyfatblackcat/photolabs/blob/master/docs/front.png)
-!["Screenshot of modal"](https://github.com/Sleepyfatblackcat/photolabs/blob/master/docs/modal.png)
-!["Screenshot of similar photos"](https://github.com/Sleepyfatblackcat/photolabs/blob/master/docs/similar.png)
+!["Screenshot of front page"](https://github.com/Sleepyfatblackcat/photolabs/blob/main/doc/front.png)
+!["Screenshot of modal"](https://github.com/Sleepyfatblackcat/photolabs/blob/main/doc/modal.png)
+!["Screenshot of similar photos"](https://github.com/Sleepyfatblackcat/photolabs/blob/main/doc/similar.png)
 
 ## Getting Started
 
