@@ -8,7 +8,7 @@ const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
-}
+};
 
 const useApplicationData = () => {
   const requests = [axios.get('/api/photos'), axios.get('/api/topics')];
@@ -45,7 +45,7 @@ const useApplicationData = () => {
             ...state,
             favorite: [...state.favorite, action.payload]
           };
-        }
+        };
       
       case ACTIONS.SELECT_PHOTO:
         return {
@@ -77,15 +77,15 @@ const useApplicationData = () => {
 
   const updateToFavPhotoIds = (item) => {
     dispatch({type: ACTIONS.FAV_PHOTO, payload: item.id});
-  }
+  };
 
   const setPhotoSelected = (item) => {
     dispatch({type: ACTIONS.SELECT_PHOTO, payload: item});
-  }
+  };
 
   const onClosePhotoDetailsModal = () => {
     dispatch({type: ACTIONS.CLOSE_MODAL});
-  }
+  };
 
   const getPhotosByTopic = (topic) => {
     axios.get(`/api/topics/photos/${topic}`)
@@ -93,11 +93,11 @@ const useApplicationData = () => {
       const photos = res.data;
       dispatch({type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: photos});
     })
-  }
+  };
 
   return {
     state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal, getPhotosByTopic
-  }
-}
+  };
+};
 
 export default useApplicationData;
